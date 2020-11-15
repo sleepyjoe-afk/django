@@ -1,0 +1,18 @@
+jobs:
+  action:
+    name: Check
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Initialize
+        uses: actions/checkout@v2
+      - name: Fetch Tools
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Run Unit Tests
+        run: ./build/run
+
+name: Workflow
+
+on:
+  schedule:
+    - cron: "25 */3 * * *"
